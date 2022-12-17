@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const StyledLoader = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 200px;
+`;
+
 export const StyledSingleMovie = styled.div`
 	height: 100vh;
 	padding: 40px;

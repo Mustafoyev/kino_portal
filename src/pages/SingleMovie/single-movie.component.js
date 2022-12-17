@@ -6,12 +6,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import People from '../../assets/images/people.png';
 import Peoples from '../../assets/images/peoples.png';
+import { BallTriangle, ColorRing } from 'react-loader-spinner';
 
 import {
 	StyledCastImgWrapper,
 	StyledCastItem,
 	StyledCastItemImg,
 	StyledCastWrapper,
+	StyledLoader,
 	StyledRecImgWrapper,
 	StyledRecItem,
 	StyledRecItemImg,
@@ -106,7 +108,19 @@ export const SingleMovie = () => {
 					</Slider>
 				</StyledCastWrapper>
 			) : (
-				''
+				<StyledLoader>
+					<BallTriangle
+						margin='auto auto'
+						height={100}
+						width={100}
+						radius={5}
+						color='#4fa94d'
+						ariaLabel='ball-triangle-loading'
+						wrapperClass={{}}
+						wrapperStyle=''
+						visible={true}
+					/>
+				</StyledLoader>
 			)}
 			<StyledSignleCard>
 				<StyledSignleImg
