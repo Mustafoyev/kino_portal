@@ -46,4 +46,18 @@ export const apis = {
 				api_key: API_KEY,
 			},
 		}),
+
+	getPerson: (id) =>
+		axios.get(baseURL + `/person/${id}`, {
+			params: {
+				api_key: API_KEY,
+			},
+		}),
+
+	getPersonMovies: (id) =>
+		axios.get(baseURL + `/person/${id}/movie_credits`, {
+			params: {
+				api_key: API_KEY,
+			},
+		}),
 };

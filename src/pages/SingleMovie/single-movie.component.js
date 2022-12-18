@@ -6,17 +6,19 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import People from '../../assets/images/people.png';
 import Peoples from '../../assets/images/peoples.png';
-import { BallTriangle, ColorRing } from 'react-loader-spinner';
+import { BallTriangle } from 'react-loader-spinner';
 
 import {
 	StyledCastImgWrapper,
 	StyledCastItem,
 	StyledCastItemImg,
+	StyledCastItemLink,
 	StyledCastWrapper,
 	StyledLoader,
 	StyledRecImgWrapper,
 	StyledRecItem,
 	StyledRecItemImg,
+	StyledRecItemLink,
 	StyledRecWrapper,
 	StyledSignleAverage,
 	StyledSignleBudget,
@@ -90,14 +92,16 @@ export const SingleMovie = () => {
 				<StyledCastWrapper>
 					<Slider {...settings}>
 						{cast.map((el) => (
-							<StyledCastItem>
+							<StyledCastItem key={el.id}>
 								{el.profile_path ? (
-									<StyledCastItemImg
-										src={baseImageURL + el?.profile_path}
-										alt={el?.name}
-										width={80}
-										height={50}
-									/>
+									<StyledCastItemLink to={`/person/${el.id}`}>
+										<StyledCastItemImg
+											src={baseImageURL + el?.profile_path}
+											alt={el?.name}
+											width={80}
+											height={50}
+										/>
+									</StyledCastItemLink>
 								) : (
 									<StyledCastImgWrapper>
 										<StyledCastItemImg src={People} width={80} height={50} />
@@ -148,14 +152,16 @@ export const SingleMovie = () => {
 				<StyledRecWrapper>
 					<Slider {...setting} dir='rtl'>
 						{rec.map((el) => (
-							<StyledRecItem>
+							<StyledRecItem key={el.id}>
 								{el.poster_path ? (
-									<StyledRecItemImg
-										src={baseImageURL + el?.poster_path}
-										alt={el?.title}
-										width={80}
-										height={50}
-									/>
+									<StyledRecItemLink to={`/movie/${el.id}`}>
+										<StyledRecItemImg
+											src={baseImageURL + el?.poster_path}
+											alt={el?.title}
+											width={80}
+											height={50}
+										/>
+									</StyledRecItemLink>
 								) : (
 									<StyledRecImgWrapper>
 										<StyledRecItemImg src={Peoples} width={80} height={50} />

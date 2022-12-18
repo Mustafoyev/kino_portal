@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledLoader = styled.div`
@@ -28,6 +29,14 @@ export const StyledCastItem = styled.div`
 	& + & {
 		margin-left: 10px;
 	}
+`;
+
+export const StyledCastItemLink = styled(Link)`
+	display: block;
+	width: 80px;
+	height: 120px;
+	text-decoration: none;
+	cursor: pointer;
 `;
 
 export const StyledCastImgWrapper = styled.div`
@@ -126,6 +135,14 @@ export const StyledRecImgWrapper = styled.div`
 	height: 120px;
 	background-color: #fff;
 	border-radius: 6px;
+`;
+
+export const StyledRecItemLink = styled(Link)`
+	display: block;
+	width: 80px;
+	height: 120px;
+	text-decoration: none;
+	cursor: pointer;
 `;
 
 export const StyledRecItemImg = styled.img`
