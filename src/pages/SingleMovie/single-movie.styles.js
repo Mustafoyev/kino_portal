@@ -61,6 +61,11 @@ export const StyledSignleCard = styled.div`
 	margin: 40px 0;
 `;
 
+export const StyledTrailerLink = styled(Link)`
+	display: block;
+	text-decoration: none;
+`;
+
 export const StyledSignleImg = styled.img`
 	display: block;
 	margin-right: 40px;

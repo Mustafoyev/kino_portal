@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './assets/styles/index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { TrailerProvider } from './context/TrailerContext/trailer-context.component';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<App />
+			<TrailerProvider>
+				<App />
+			</TrailerProvider>
 		</BrowserRouter>
 	</React.StrictMode>,
 );

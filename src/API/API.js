@@ -3,6 +3,7 @@ import axios from 'axios';
 const API_KEY = 'e6bf0915b364df427bb83341ef7c07ac';
 const baseURL = 'https://api.themoviedb.org/3/';
 export const baseImageURL = 'https://image.tmdb.org/t/p/w500/';
+export const baseVideoURL = 'https://www.youtube.com/embed/';
 
 export const apis = {
 	getNowPlayingMovies: () =>
@@ -33,6 +34,13 @@ export const apis = {
 			},
 		}),
 
+	getMovieTriler: (id) =>
+		axios.get(baseURL + `/movie/${id}/videos`, {
+			params: {
+				api_key: API_KEY,
+			},
+		}),
+
 	getMovieCredits: (id) =>
 		axios.get(baseURL + `/movie/${id}/credits`, {
 			params: {
@@ -41,7 +49,7 @@ export const apis = {
 		}),
 
 	getRecMovies: (id) =>
-		axios.get(baseURL + `/movie/${id}/recommendations`, {
+		axios.get(baseURL + `/movie/${id}/similar`, {
 			params: {
 				api_key: API_KEY,
 			},
