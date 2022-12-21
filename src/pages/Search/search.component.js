@@ -1,34 +1,38 @@
+import { Card } from '../../components/Card/card.component';
 import { useEffect, useState } from 'react';
 import { BallTriangle } from 'react-loader-spinner';
+import { useParams } from 'react-router-dom';
 import { apis } from '../../API/API';
-import { Card } from '../../components/Card/card.component';
 import { PaginationComponent } from '../../components/PaginationComponent/pagination.component';
-import { StyledHomeList, StyledHomeWrapper } from '../Home/home.styles';
 import { StyledLoader } from '../SingleMovie/single-movie.styles';
+import { StyledSearchList, StyledSearchWrapper } from './search.styles';
+import useDebounce from '../../hooks/useDebounce';
 
-export const Popular = () => {
-	const [movies, setMovies] = useState([]);
+export const Search = () => {
+	const { searchMovie } = useParams();
+	const [searchedMovie, setSearchedMovie] = useState([]);
 	const [pages, setPages] = useState();
 	const [total, setTotal] = useState();
+	const debouncedSearchTerm = useDebounce(searchMovie, 2000);
 
-	const getPopularMovies = async (pageNum) => {
-		const res = await apis.getPopularMovies(pageNum);
-		setMovies(res.data.results);
+	const getSearchMovies = async (movie, pageNum) => {
+		const res = await apis.getSearchMovies(movie, pageNum);
+		setSearchedMovie(res.data.results);
 		setTotal(res.data.total_pages);
 	};
 
 	useEffect(() => {
-		getPopularMovies(pages);
-	}, [pages]);
+		getSearchMovies(debouncedSearchTerm, pages);
+	}, [debouncedSearchTerm, pages]);
 
 	return (
-		<StyledHomeWrapper>
-			{movies.length ? (
-				<StyledHomeList>
-					{movies.map((el) => (
+		<StyledSearchWrapper>
+			{searchedMovie.length ? (
+				<StyledSearchList>
+					{searchedMovie.map((el) => (
 						<Card key={el.id} obj={el} />
 					))}
-				</StyledHomeList>
+				</StyledSearchList>
 			) : (
 				<StyledLoader>
 					<BallTriangle
@@ -45,6 +49,6 @@ export const Popular = () => {
 				</StyledLoader>
 			)}
 			<PaginationComponent setPages={setPages} totalPages={total} />
-		</StyledHomeWrapper>
+		</StyledSearchWrapper>
 	);
 };

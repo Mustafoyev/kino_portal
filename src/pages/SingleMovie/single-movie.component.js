@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { apis, baseImageURL } from '../../API/API';
 import Slider from 'react-slick';
@@ -30,10 +30,10 @@ import {
 	StyledSignleRelise,
 	StyledSignleText,
 	StyledSignleTitle,
+	StyledSingleImgLinkWrapper,
 	StyledSingleMovie,
 	StyledTrailerLink,
 } from './single-movie.styles';
-import { TrailerContext } from '../../context/TrailerContext/trailer-context.component';
 
 export const SingleMovie = () => {
 	const { id } = useParams();
@@ -41,18 +41,10 @@ export const SingleMovie = () => {
 	const [movie, setMovie] = useState({});
 	const [cast, setCast] = useState({});
 	const [rec, setRec] = useState({});
-	const { setVideo } = useContext(TrailerContext);
 
 	const getSingleMovie = async (movieId) => {
 		const res = await apis.getMovie(movieId);
 		setMovie(res.data);
-	};
-
-	const getMovieTriler = async (movieId) => {
-		const res = await apis.getMovieTriler(movieId);
-		setVideo(
-			window.localStorage.setItem('videos', JSON.stringify(res.data.results)),
-		);
 	};
 
 	const getMovieCredits = async (movieId) => {
@@ -67,7 +59,6 @@ export const SingleMovie = () => {
 
 	useEffect(() => {
 		getSingleMovie(id);
-		getMovieTriler(id);
 		getMovieCredits(id);
 		getRecMovies(id);
 	}, [id]);
@@ -138,13 +129,16 @@ export const SingleMovie = () => {
 				</StyledLoader>
 			)}
 			<StyledSignleCard>
-				<StyledTrailerLink to={'/trailer'}>
+				<StyledSingleImgLinkWrapper>
 					<StyledSignleImg
 						src={baseImageURL + movie?.poster_path}
 						width={180}
 						height={240}
 					/>
-				</StyledTrailerLink>
+					<StyledTrailerLink to={`/trailer/${movie.id}`}>
+						View Trailer
+					</StyledTrailerLink>
+				</StyledSingleImgLinkWrapper>
 				<StyledSignleContent>
 					<StyledSignleTitle>{movie?.title}</StyledSignleTitle>
 					<StyledSignleText>{movie?.overview}</StyledSignleText>

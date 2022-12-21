@@ -1,7 +1,7 @@
-import { useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { BallTriangle } from 'react-loader-spinner';
-import { baseVideoURL } from '../../API/API';
-import { TrailerContext } from '../../context/TrailerContext/trailer-context.component';
+import { useParams } from 'react-router-dom';
+import { apis, baseVideoURL } from '../../API/API';
 import { StyledLoader } from '../SingleMovie/single-movie.styles';
 import {
 	StyledTrailerIframe,
@@ -11,21 +11,31 @@ import {
 } from './trailer.styles';
 
 export const Trailer = () => {
-	const { video } = useContext(TrailerContext);
+	const { id } = useParams();
+	const [trailer, setTrailer] = useState([]);
+
+	const getMovieTriler = async (movieId) => {
+		const res = await apis.getMovieTriler(movieId);
+		setTrailer(res.data.results);
+	};
+
+	useEffect(() => {
+		getMovieTriler(id);
+	}, [id]);
 
 	return (
 		<StyledTrailerWrapper>
-			{video.length ? (
+			{trailer.length ? (
 				<StyledTrailerList>
-					{video.map((el) => (
-						<StyledTrailerItem>
+					{trailer.map((el) => (
+						<StyledTrailerItem key={el.id}>
 							<StyledTrailerIframe
 								src={baseVideoURL + el?.key}
 								width={400}
 								height={300}
 								title={el?.name}
 								allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-								allowfullscreen></StyledTrailerIframe>
+								allowFullScreen></StyledTrailerIframe>
 						</StyledTrailerItem>
 					))}
 				</StyledTrailerList>

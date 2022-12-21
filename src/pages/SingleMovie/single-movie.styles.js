@@ -5,12 +5,12 @@ export const StyledLoader = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 200px;
+	height: 100vh;
 `;
 
 export const StyledSingleMovie = styled.div`
 	height: 100vh;
-	padding: 40px;
+	padding: 30px;
 	background-image: ${(props) =>
 		props.img
 			? `url(https://image.tmdb.org/t/p/original/${props.img})`
@@ -58,12 +58,26 @@ export const StyledSignleCard = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin: 40px 0;
+	margin: 30px 0;
 `;
+
+export const StyledSingleImgLinkWrapper = styled.div``;
 
 export const StyledTrailerLink = styled(Link)`
 	display: block;
+	width: 180px;
+	margin-top: 8px;
+	padding: 8px;
+	border-radius: 6px;
+	background-color: #000;
+	text-align: center;
 	text-decoration: none;
+	color: #fff;
+
+	&:hover {
+		color: #000;
+		background-color: #fff;
+	}
 `;
 
 export const StyledSignleImg = styled.img`

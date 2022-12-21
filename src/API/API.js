@@ -6,24 +6,35 @@ export const baseImageURL = 'https://image.tmdb.org/t/p/w500/';
 export const baseVideoURL = 'https://www.youtube.com/embed/';
 
 export const apis = {
-	getNowPlayingMovies: () =>
+	getNowPlayingMovies: (pageNum) =>
 		axios.get(baseURL + 'movie/now_playing?', {
 			params: {
 				api_key: API_KEY,
+				page: pageNum,
 			},
 		}),
 
-	getPopularMovies: () =>
+	getSearchMovies: (searchMovie, pageNum) =>
+		axios.get(baseURL + '/search/movie?query=' + searchMovie, {
+			params: {
+				api_key: API_KEY,
+				page: pageNum,
+			},
+		}),
+
+	getPopularMovies: (pageNum) =>
 		axios.get(baseURL + 'movie/popular?', {
 			params: {
 				api_key: API_KEY,
+				page: pageNum,
 			},
 		}),
 
-	getUpComingMovies: () =>
+	getUpComingMovies: (pageNum) =>
 		axios.get(baseURL + 'movie/upcoming?', {
 			params: {
 				api_key: API_KEY,
+				page: pageNum,
 			},
 		}),
 

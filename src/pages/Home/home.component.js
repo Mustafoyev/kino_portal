@@ -2,20 +2,24 @@ import { useEffect, useState } from 'react';
 import { BallTriangle } from 'react-loader-spinner';
 import { apis } from '../../API/API';
 import { Card } from '../../components/Card/card.component';
+import { PaginationComponent } from '../../components/PaginationComponent/pagination.component';
 import { StyledLoader } from '../SingleMovie/single-movie.styles';
 import { StyledHomeList, StyledHomeWrapper } from './home.styles';
 
 export const Home = () => {
 	const [movies, setMovies] = useState([]);
+	const [pages, setPages] = useState();
+	const [total, setTotal] = useState();
 
-	const getNowPlayingMovie = async () => {
-		const res = await apis.getNowPlayingMovies();
+	const getNowPlayingMovie = async (pageNum) => {
+		const res = await apis.getNowPlayingMovies(pageNum);
 		setMovies(res.data.results);
+		setTotal(res.data.total_pages);
 	};
 
 	useEffect(() => {
-		getNowPlayingMovie();
-	}, []);
+		getNowPlayingMovie(pages);
+	}, [pages]);
 
 	return (
 		<StyledHomeWrapper>
@@ -40,6 +44,7 @@ export const Home = () => {
 					/>
 				</StyledLoader>
 			)}
+			<PaginationComponent setPages={setPages} totalPages={total} />
 		</StyledHomeWrapper>
 	);
 };
