@@ -64,19 +64,97 @@ export const StyledSignleCard = styled.div`
 export const StyledSingleImgLinkWrapper = styled.div``;
 
 export const StyledTrailerLink = styled(Link)`
+	position: relative;
 	display: block;
 	width: 180px;
 	margin-top: 8px;
-	padding: 8px;
+	padding: 1em 1.8em;
 	border-radius: 6px;
-	background-color: #000;
 	text-align: center;
 	text-decoration: none;
 	color: #fff;
+	outline: none;
+	border: 1px solid #303030;
+	background-color: #212121;
+	color: #ae00ff;
+	letter-spacing: 2px;
+	font-size: 15px;
+	font-weight: bold;
+	overflow: hidden;
+	transition: 0.2s;
+	border-radius: 20px;
+	cursor: pointer;
 
 	&:hover {
-		color: #000;
-		background-color: #fff;
+		box-shadow: 0 0 10px #ae00ff, 0 0 25px #001eff, 0 0 50px #ae00ff;
+		transition-delay: 0.6s;
+		> :nth-child(1) {
+			left: 100%;
+			transition: 0.7s;
+		}
+		> :nth-child(3) {
+			right: 100%;
+			transition: 0.7s;
+			transition-delay: 0.35s;
+		}
+		> :nth-child(2) {
+			top: 100%;
+			transition: 0.7s;
+			transition-delay: 0.17s;
+		}
+		> :nth-child(4) {
+			bottom: 100%;
+			transition: 0.7s;
+			transition-delay: 0.52s;
+		}
+	}
+
+	&:active {
+		background: #ae00af;
+		background: linear-gradient(to top right, #ae00af, #001eff);
+		color: #bfbfbf;
+		box-shadow: 0 0 8px #ae00ff, 0 0 8px #001eff, 0 0 8px #ae00ff;
+		transition: 0.1s;
+
+		> :nth-child(1) > :nth-child(2) > :nth-child(2) > :nth-child(2) {
+			transition: none;
+			transition-delay: none;
+		}
+	}
+`;
+
+export const StyledTrailerSpan = styled.span`
+	position: absolute;
+	&:nth-child(1) {
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 2px;
+		background: linear-gradient(90deg, transparent, #ae00ff);
+	}
+
+	&:nth-child(3) {
+		bottom: 0;
+		right: -100%;
+		width: 100%;
+		height: 2px;
+		background: linear-gradient(90deg, transparent, #001eff);
+	}
+
+	&:nth-child(2) {
+		top: -100%;
+		right: 0;
+		width: 2px;
+		height: 100%;
+		background: linear-gradient(180deg, transparent, #ae00ff);
+	}
+
+	&:nth-child(4) {
+		bottom: -100%;
+		left: 0;
+		width: 2px;
+		height: 100%;
+		background: linear-gradient(360deg, transparent, #001eff);
 	}
 `;
 

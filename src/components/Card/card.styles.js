@@ -6,14 +6,56 @@ export const StyledCardItem = styled.li`
 	width: 300px;
 	padding: 20px;
 	border-radius: 12px;
-	background-color: #969696;
+	background-color: #07182e;
 	box-shadow: rgba(67, 71, 85, 0.2) 0px 0px 5.6px 0px,
 		rgba(90, 125, 188, 0.05) 0px 5.6px 8px 0px;
+	display: flex;
+	place-content: center;
+	place-items: center;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		width: 100px;
+		background-image: linear-gradient(
+			180deg,
+			rgb(0, 183, 255),
+			rgb(255, 48, 255)
+		);
+		height: 130%;
+		animation: rotBGimg 5s linear infinite;
+		transition: all 0.2s linear;
+	}
+
+	@keyframes rotBGimg {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		background: #07182e;
+		inset: 5px;
+		border-radius: 15px;
+	}
+
+	&:hover:before {
+		background-image: linear-gradient(180deg, rgb(81, 255, 0), purple);
+		animation: rotBGimg 3.5s linear infinite;
+	}
 `;
 
 export const StyledCardLink = styled(Link)`
 	display: block;
 	text-decoration: none;
+	z-index: 1;
 `;
 
 export const StyledAvarage = styled.span`
@@ -38,7 +80,7 @@ export const StyledItemTitle = styled.h3`
 	margin: 10px 0 6px 0;
 	font-size: 18px;
 	line-height: 100%;
-	color: #000;
+	color: #fff;
 `;
 
 export const StyledItemTime = styled.time`
@@ -47,7 +89,7 @@ export const StyledItemTime = styled.time`
 	font-weight: 500;
 	font-size: 18px;
 	line-height: 100%;
-	color: #000;
+	color: #fff;
 `;
 
 export const StyledItemCount = styled.p`
@@ -55,5 +97,5 @@ export const StyledItemCount = styled.p`
 	font-weight: 500;
 	font-size: 18px;
 	line-height: 100%;
-	color: #000;
+	color: #fff;
 `;

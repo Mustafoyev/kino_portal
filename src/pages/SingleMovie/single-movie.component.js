@@ -33,6 +33,7 @@ import {
 	StyledSingleImgLinkWrapper,
 	StyledSingleMovie,
 	StyledTrailerLink,
+	StyledTrailerSpan,
 } from './single-movie.styles';
 
 export const SingleMovie = () => {
@@ -136,6 +137,10 @@ export const SingleMovie = () => {
 						height={240}
 					/>
 					<StyledTrailerLink to={`/trailer/${movie.id}`}>
+						<StyledTrailerSpan></StyledTrailerSpan>
+						<StyledTrailerSpan></StyledTrailerSpan>
+						<StyledTrailerSpan></StyledTrailerSpan>
+						<StyledTrailerSpan></StyledTrailerSpan>
 						View Trailer
 					</StyledTrailerLink>
 				</StyledSingleImgLinkWrapper>
